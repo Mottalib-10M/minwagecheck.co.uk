@@ -1,0 +1,138 @@
+---
+/**
+ * Home (pillar page): the pay check first, then the key rates, the April 2026 and April 2027 tables,
+ * what counts as pay, hours, conversions, age and birthdays, apprentices, accommodation, the 2027
+ * rise, underpayment, and every page of the site. Figures come from params-2026.json via the engine.
+ */
+import PageLayout from '../layouts/PageLayout.astro';
+import Tool from './Tool.astro';
+import Clamp from './Clamp.astro';
+import Sources from './Sources.astro';
+import { route } from '../i18n/routes';
+import { PAGES } from '../lib/guides';
+import { GROUPS_ORDER, groupLabel } from '../i18n/nav';
+import { helpers } from '../lib/helpers';
+import { LAST_UPDATED, AUTHOR_NAME } from '../data/site-config';
+import { displayDate } from '../lib/format';
+import { faqSchema, webApplicationSchema, websiteSchema, organizationSchema } from '../lib/seo';
+const lang = 'en';
+const h = helpers(lang, true);
+const { A, E } = h;
+const link = (id: string, text: string) => (PAGES.some((p) => p.id === id) ? `<a href="${route(id, lang)}">${text}</a>` : text);
+const groups = GROUPS_ORDER.map((g) => ({ g, items: PAGES.filter((p) => p.group === g).map((p) => ({ href: route(p.id, lang), name: p.en.nav, text: p.en.card })) }));
+const r26 = (age: number) => h.rate(2026, age), r27 = (age: number) => h.rate(2027, age);
+
+const title = 'Minimum Wage Checker: UK Rates for 2026 and April 2027';
+const description = 'Minimum wage checker for UK workers: legal hourly rate by age and apprenticeship, pay that counts after deductions, the gap per pay period, the April 2027 rise.';
+const faqs = [
+  { q: 'What is the minimum wage in the UK right now?', a: `From 1 April 2026 it is ${h.gbp2(r26(21))} an hour at 21 and over (the National Living Wage), ${h.gbp2(r26(18))} at 18 to 20, ${h.gbp2(r26(16))} at 16 and 17, and ${h.gbp2(h.C.apprentice)} for apprentices under 19 or in their first year. The rate depends on your age on the first day of each pay period, not on the day you were hired.` },
+  { q: 'How much will the minimum wage be in April 2027?', a: `The government announced on ${h.date(A.date)} that from 1 April 2027 the National Living Wage will be ${h.gbp2(r27(21))}, the 18 to 20 rate ${h.gbp2(r27(18))}, and the 16 to 17 and apprentice rates ${h.gbp2(r27(16))}. Each band rises by ${h.pc(A.increasePct, 1)}. The amending regulations that put these figures into law were still to be made when this page was checked.` },
+  { q: 'Does my employer have to pay me the minimum wage for every hour?', a: 'The test is made over each pay reference period, not hour by hour. Your pay that counts for the period, divided by the hours of working time in it, must reach the rate for your age. An employer can pay a low rate for some tasks and a higher one for others, as long as the average over the period is at least the legal minimum.' },
+  { q: 'Can my employer take money for my uniform out of my pay?', a: 'It can, but the deduction lowers the pay that counts for the minimum wage. If the uniform is required for the job and the deduction takes your pay for the period below the legal rate, the employer is breaking the law, whether it deducts the money or asks you to pay it. The same goes for tools, required training and travel the employer imposes.' },
+  { q: 'Do tips count towards the minimum wage?', a: 'No. Tips, gratuities, service charges and cover charges never count towards minimum wage pay, even when they are paid through the payroll or shared out by a tronc. Your pay without them, divided by the hours you worked in the pay period, must reach the legal rate for your age.' },
+  { q: 'What should I do if I am paid less than the minimum wage?', a: `Check one pay period with the checker, keep your payslips and a record of your hours, and raise it with your employer in writing. If that does not settle it, you can complain to the official service that enforces the minimum wage, call Acas on ${E.acasPhone} for free advice, or make a claim to an employment tribunal. It is unlawful to dismiss you for asking.` },
+  { q: 'Is this site run by HMRC or the government?', a: 'No. It is an independent site published by Radif Partners. It reads the regulations, the GOV.UK rates and HMRC guidance, and turns them into checkers that run in your browser. It cannot see your payslips, contact your employer or decide whether you were underpaid; HMRC, a tribunal or a court decides that. Nothing you type is sent anywhere.' },
+];
+const jsonLd = [websiteSchema(lang), organizationSchema(lang), webApplicationSchema({ name: 'Minimum wage checker', description, path: route('home', lang), lang }), faqSchema(faqs, lang)];
+const resume = `The minimum wage in the United Kingdom is a legal floor per hour that depends on your age and on whether you are an apprentice: from 1 April 2026 it is ${h.gbp2(r26(21))} at 21 and over (the National Living Wage), ${h.gbp2(r26(18))} at 18 to 20, and ${h.gbp2(r26(16))} for 16 and 17 year olds and for apprentices under 19 or in their first year. On ${h.date(A.date)} the government announced the rates from 1 April 2027: ${h.gbp2(r27(21))}, ${h.gbp2(r27(18))} and ${h.gbp2(r27(16))}. The check is not made on the hourly rate in your contract but on the pay that counts over a pay reference period of up to one month: overtime premiums and tips are left out, deductions for a uniform or tools the job requires and salary sacrifice are taken off, and free accommodation adds an offset of ${h.gbp2(h.C.offsetDay)} a day. That pay, divided by the hours worked, must reach the rate for your age on the first day of the period. The checker above does this for one pay period and shows the shortfall, if any.`;
+const rows = [
+  ['21 and over (National Living Wage)', h.gbp2(r26(21)), h.gbp2(r27(21)), h.pc(h.rise(2026, 2027, 21), 1)],
+  ['18 to 20', h.gbp2(r26(18)), h.gbp2(r27(18)), h.pc(h.rise(2026, 2027, 18), 1)],
+  ['16 to 17', h.gbp2(r26(16)), h.gbp2(r27(16)), h.pc(h.rise(2026, 2027, 16), 1)],
+  ['Apprentice', h.gbp2(h.C.apprentice), h.gbp2(h.N.apprentice), h.pc(h.N.apprentice / h.C.apprentice - 1, 1)],
+  ['Accommodation offset, per day', h.gbp2(h.C.offsetDay), h.gbp2(h.N.offsetDay), h.pc(h.N.offsetDay / h.C.offsetDay - 1, 1)],
+];
+---
+<PageLayout title={title} description={description} lang={lang} jsonLd={jsonLd} faqs={faqs} breadcrumbs={[]}>
+  <header class="mb-3">
+    <h1 class="mt-0 text-[1.75rem] font-bold text-navy-900 max-sm:leading-tight sm:text-3xl md:text-4xl">Minimum wage checker</h1>
+    <p class="mt-2 text-base text-navy-700 sm:text-lg">Enter your age, the hours and the gross pay of one pay period: see the legal rate, the pay that counts and any shortfall.</p>
+  </header>
+  <div data-outil class="mb-4"><Tool tool={{ kind: 'check' }} primary={true} seedKey="home" /></div>
+  <Clamp text={resume} id="clamp-home" lang={lang} class="mb-3" />
+  <p class="mb-6 text-sm text-navy-600">Rates and rules updated on <time datetime={LAST_UPDATED}>{displayDate(LAST_UPDATED, 'en-GB')}</time> · {AUTHOR_NAME} · <a href={route('method', lang)} class="underline hover:text-navy-900">How the check is worked out</a> · <a href={route('about', lang)} class="underline hover:text-navy-900">About this site</a></p>
+
+  <dl class="not-prose mb-8 grid grid-cols-2 gap-3 sm:grid-cols-4" data-chiffres>
+    <div class="rounded-xl border border-navy-100 bg-white p-3"><dt class="text-xs text-navy-600">21 and over, from April 2026</dt><dd class="text-2xl font-bold text-navy-900">{h.gbp2(r26(21))}</dd></div>
+    <div class="rounded-xl border border-navy-100 bg-white p-3"><dt class="text-xs text-navy-600">21 and over, from April 2027</dt><dd class="text-2xl font-bold text-navy-900">{h.gbp2(r27(21))}</dd></div>
+    <div class="rounded-xl border border-navy-100 bg-white p-3"><dt class="text-xs text-navy-600">18 to 20, from April 2026</dt><dd class="text-2xl font-bold text-navy-900">{h.gbp2(r26(18))}</dd></div>
+    <div class="rounded-xl border border-navy-100 bg-white p-3"><dt class="text-xs text-navy-600">Under 18 and apprentices</dt><dd class="text-2xl font-bold text-navy-900">{h.gbp2(r26(16))}</dd></div>
+  </dl>
+
+  <div class="prose prose-slate max-w-none">
+    <h2>Minimum wage rates now and from April 2027</h2>
+    <p>The rates change every year on 1 April. The government sets them by regulations after advice from the Low Pay Commission, an independent body of employer, worker and independent members. The 2026 rates are in the National Minimum Wage (Amendment) Regulations 2026; the 2027 rates were recommended by the Commission in a letter of <Fragment set:html={h.date(A.lpcLetter)} /> and accepted in full by the government on <Fragment set:html={h.date(A.date)} />, the day of the Budget.</p>
+    <Fragment set:html={h.table(['Band', 'From 1 April 2026', 'From 1 April 2027', 'Rise'], rows, `Sources: ${h.src('gov_rates', 'GOV.UK rates')}, ${h.src('si_2026', 'SI 2026/357')} and ${h.src('lpc_2027_news', 'announcement of the 2027 rates')}.`, ['l', 'r', 'r', 'r'])} />
+    <p>Every band rises by the same {h.pc(A.increasePct, 1)} in 2027, a smaller step than in 2026, when the 18 to 20 rate rose by {h.pc(h.rise(2025, 2026, 18), 1)}. The Commission explained that it had weighed a weaker job market against the cost of living, and paused the narrowing of the gap between the 18 to 20 rate and the National Living Wage. The <Fragment set:html={link('minimum-wage-april-2027', 'April 2027 page')} /> sets out the details, and the <Fragment set:html={link('minimum-wage-history', 'history page')} /> lists every rate since 2019 for arrears that go back further.</p>
+  </div>
+  <div class="mb-6"><Tool tool={{ kind: 'mini:april2027' }} idPrefix="h1" /></div>
+
+  <div class="prose prose-slate max-w-none">
+    <h2>What counts as pay</h2>
+    <p>Your payslip's gross pay is the starting point, not the answer. HMRC's guidance on calculating the minimum wage sorts every sum into three groups.</p>
+    <ul>
+      <li><strong>Counts:</strong> basic pay, bonuses and commission, and the basic rate part of any overtime or shift hours.</li>
+      <li><strong>Left out:</strong> the premium part of overtime or shift pay above the basic rate, tips, gratuities and service charges, allowances not consolidated into pay, expenses refunded, loans and advances, and benefits in kind other than accommodation.</li>
+      <li><strong>Taken off:</strong> deductions or payments you make for the employer's own purposes, such as a uniform the job requires, tools, required training or travel it imposes, and salary given up under salary sacrifice.</li>
+    </ul>
+    <p>Tax, National Insurance, pension contributions you pay to a scheme, union subscriptions and repayment of a loan or an advance do not reduce minimum wage pay: they are paid out of wages you have already earned. The pages on <Fragment set:html={link('uniform-deductions', 'uniforms')} />, <Fragment set:html={link('overtime-and-shift-premiums', 'overtime and shift premiums')} />, <Fragment set:html={link('tips-and-service-charges', 'tips')} /> and <Fragment set:html={link('salary-sacrifice-minimum-wage', 'salary sacrifice')} /> each have a checker for that one rule.</p>
+  </div>
+  <div class="mb-6"><Tool tool={{ kind: 'mini:uniform' }} idPrefix="h2" /></div>
+
+  <div class="prose prose-slate max-w-none">
+    <h2>Hours that count</h2>
+    <p>For most jobs paid by the hour, the hours that count are the hours of work, plus time when you are required to be available at or near the workplace, plus training, travel during the working day and waiting time the job requires. The trip from home to a fixed workplace and back does not count. Rest breaks do not count either, unless you are made to keep working through them.</p>
+    <p>Some cases need care. On a sleep-in shift, only the time you are awake to work counts if a suitable place to sleep is provided. Care workers travelling between clients must be paid for that time. Trial shifts beyond a short test of skills are work. The pages on <Fragment set:html={link('training-travel-waiting-time', 'training, travel and waiting')} />, <Fragment set:html={link('sleep-in-and-on-call', 'sleep-ins and on-call time')} /> and <Fragment set:html={link('unpaid-trial-shifts', 'trial shifts')} /> go through each rule. Salaried workers and those paid by output have their own methods, set out on the <Fragment set:html={link('salaried-hours-minimum-wage', 'salaried hours')} /> and <Fragment set:html={link('piece-work-minimum-wage', 'piece work')} /> pages.</p>
+  </div>
+  <div class="mb-6"><Tool tool={{ kind: 'mini:worktime' }} idPrefix="h3" /></div>
+
+  <div class="prose prose-slate max-w-none">
+    <h2>Weekly, monthly and yearly pay at the minimum</h2>
+    <p>The law sets an hourly rate. Weekly pay is that rate times your weekly hours; a year is 52 weeks, and a month is a twelfth of a year. A full-time week of 37.5 hours at the National Living Wage comes to {h.gbp(h.conv(r26(21), 37.5).weekly)} from April 2026 and {h.gbp(h.conv(r27(21), 37.5).weekly)} from April 2027, or {h.gbp(h.conv(r26(21), 37.5).annual)} and {h.gbp(h.conv(r27(21), 37.5).annual)} a year before tax.</p>
+  </div>
+  <div class="mb-6"><Tool tool={{ kind: 'mini:convert' }} idPrefix="h4" /></div>
+  <div class="prose prose-slate max-w-none">
+    <p>After Income Tax and National Insurance, with the standard tax code, that full-time year leaves about {h.gbp(h.net(h.conv(r26(21), 37.5).annual).net)} in England, Wales and Northern Ireland in 2026 to 2027. The <Fragment set:html={link('minimum-wage-after-tax', 'after tax page')} /> has a calculator for any hours, and the <Fragment set:html={link('employer-cost-minimum-wage', 'employer cost page')} /> adds employer National Insurance for those who pay wages.</p>
+
+    <h2>Your age and your birthday</h2>
+    <p>The rate follows your age on the first day of each pay reference period. When you turn 18 or 21, the higher rate starts with the first pay period beginning on or after your birthday, not on the birthday itself. Under compulsory school age there is no minimum wage at all; the 16 to 17 rate starts once you can leave school, which is the last Friday in June in England and Wales, 31 May or the start of the Christmas holidays in Scotland, and 30 June in Northern Ireland.</p>
+  </div>
+  <div class="mb-6"><Tool tool={{ kind: 'mini:birthday' }} idPrefix="h5" /></div>
+  <div class="prose prose-slate max-w-none">
+    <p>Each age has its own page with the rate, a weekly pay table and the next step: <Fragment set:html={link('minimum-wage-16-year-old', '16')} />, <Fragment set:html={link('minimum-wage-17-year-old', '17')} />, <Fragment set:html={link('minimum-wage-18-year-old', '18')} />, <Fragment set:html={link('minimum-wage-19-year-old', '19')} />, <Fragment set:html={link('minimum-wage-20-year-old', '20')} /> and <Fragment set:html={link('minimum-wage-21-year-old', '21')} />, with a separate page for <Fragment set:html={link('minimum-wage-under-16', 'under 16s')} />.</p>
+
+    <h2>Apprentices</h2>
+    <p>The apprentice rate, {h.gbp2(h.C.apprentice)} from April 2026 and {h.gbp2(h.N.apprentice)} from April 2027, applies to apprentices under 19 and to apprentices aged 19 or over in the first year of their apprenticeship. From the first anniversary of the start, an apprentice aged 19 or over must get the rate for their age: {h.gbp2(r26(19))} at 19 or 20 and {h.gbp2(r26(21))} at 21 and over today. Time spent on off-the-job training is working time and must be paid.</p>
+  </div>
+  <div class="mb-6"><Tool tool={{ kind: 'mini:apprentice' }} idPrefix="h6" /></div>
+
+  <div class="prose prose-slate max-w-none">
+    <h2>Accommodation provided by the employer</h2>
+    <p>Accommodation is the only benefit in kind that counts towards the minimum wage, and only up to the accommodation offset: {h.gbp2(h.C.offsetDay)} a day, or {h.gbp2(h.round2(h.C.offsetDay * 7))} a week, from April 2026, and {h.gbp2(h.N.offsetDay)} a day from April 2027. Free accommodation adds the offset to your pay for the check. A charge above the offset takes the excess off your pay; a charge at or below it has no effect. Charges for gas, electricity and furniture can count as part of the accommodation charge.</p>
+  </div>
+  <div class="mb-6"><Tool tool={{ kind: 'mini:offset' }} idPrefix="h7" /></div>
+
+  <div class="prose prose-slate max-w-none">
+    <h2>If you are paid less than the minimum wage</h2>
+    <p>Underpayment is money owed to you. The employer must repay it as arrears, recalculated at today's rate when that is higher than the rate at the time. HMRC can order repayment with a notice of underpayment and a penalty of {h.pc(E.penaltyPct)} of the arrears, up to {h.gbp(E.penaltyMaxPerWorker)} per worker, and employers who underpay might be named by the government. You can:</p>
+    <ol>
+      <li>keep your payslips, contract and a record of the hours you worked;</li>
+      <li>ask your employer in writing to check and correct the pay, and ask to see its minimum wage records, which you are entitled to see;</li>
+      <li>complain to the official service with the <Fragment set:html={h.src('gov_complaint', 'pay and work rights complaint form')} />, on which you can ask HMRC not to tell the employer who complained;</li>
+      <li>call the Acas helpline on {E.acasPhone} ({E.acasHours}) for free advice, or make a claim to an <Fragment set:html={h.src('tribunals', 'employment tribunal')} />.</li>
+    </ol>
+    <p>The <Fragment set:html={link('report-underpayment', 'underpayment page')} /> walks through each step, the <Fragment set:html={link('minimum-wage-arrears', 'arrears page')} /> works out what is owed, and the <Fragment set:html={link('who-gets-minimum-wage', 'eligibility page')} /> covers who is entitled, including agency workers, zero hours workers and interns.</p>
+
+    <h2>Every page of the site</h2>
+  </div>
+  <div class="not-prose grid gap-6 sm:grid-cols-2" data-sommaire>
+    {groups.map(({ g, items }) => (
+      <section><h3 class="mb-2 text-lg font-semibold text-navy-900">{groupLabel(g)}</h3><ul class="space-y-2 text-sm">{items.map((c) => <li><a href={c.href} class="font-medium text-accent-700 underline">{c.name}</a><span class="block text-navy-700">{c.text}</span></li>)}</ul></section>
+    ))}
+  </div>
+  <div class="prose prose-slate mt-8 max-w-none">
+    <h2>How this site works</h2>
+    <p>Every rate, offset and threshold comes from one parameter file, read on the regulations, GOV.UK, HMRC's guidance and the Low Pay Commission, each value with its source and date. The checkers run in your browser: nothing you type is sent or stored. The site takes no complaint, contacts no employer and recommends no adviser; it sends you to the official services. The <a href={route('method', lang)}>method page</a> explains each calculation.</p>
+    <Sources lang={lang} keys={['gov_rates', 'si_2026', 'nmw_regs', 'lpc_2027_news', 'lpc_2027', 'hmrc_calc', 'hmrc_hours', 'gov_accom', 'gov_apprentice', 'gov_complaint', 'acas']} />
+  </div>
+</PageLayout>

@@ -1,0 +1,26 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { AUTHOR_NAME, CONTACT_EMAIL, LAST_UPDATED, SITE_NAMES } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+import { displayDate } from '../../lib/format';
+const lang = 'en';
+---
+<PageLayout title={`Editorial policy of ${SITE_NAMES[lang]}: sources and corrections`} description="Which regulations and official pages UK Minimum Wage relies on, how rates and rules are checked, which sources it refuses and how a mistake is corrected and dated." lang={lang} noindex={true} breadcrumbs={[{ label: 'Editorial policy' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Editorial and corrections policy</h1>
+    <p>People use these pages to find out whether their pay is legal, how much they are owed and what to do next. A wrong rate or rule could cost them money, so every figure points back to the text it was read on.</p>
+    <h2>Who is responsible</h2><p>{AUTHOR_NAME}, reachable at <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.</p>
+    <h2>What we read</h2>
+    <ul>
+      <li>the National Minimum Wage Act 1998, the National Minimum Wage Regulations 2015 and each year's amending regulations, on legislation.gov.uk;</li>
+      <li>GOV.UK: the rates page, the guidance HMRC publishes on calculating the minimum wage, accommodation, apprentices, complaints and employer thresholds;</li>
+      <li>the Low Pay Commission: its remit, its yearly report and its letter recommending the next rates, and the government's announcement accepting them;</li>
+      <li>Acas for the helpline and the Living Wage Foundation for the voluntary real Living Wage, named as such.</li>
+    </ul>
+    <h2>Sources we refuse</h2><p>Payroll vendors' blogs, recruitment sites, forums and news summaries never supply a figure here. A rate that has not been announced by the government is shown as not yet published, with the date when it is expected, never estimated.</p>
+    <h2>Review cycle</h2><p>The rates are re-read each year when the Low Pay Commission writes to the government (October or November), when the government announces the next rates, when the amending regulations are made and on 1 April. HMRC guidance is re-read at least every quarter.</p>
+    <h2>Corrections</h2>
+    <ol><li>We open the source again.</li><li>We correct the parameter file and add an automated test for the case.</li><li>The site rebuilds and every page shows the new date.</li></ol>
+    <h2>Independence</h2><p>No employer, union, law firm or payroll provider pays for or reviews what is published here, and the site carries no affiliate link. See also the <a href={route('method', lang)}>method page</a>. Version of <time datetime={LAST_UPDATED}>{displayDate(LAST_UPDATED, 'en-GB')}</time>.</p>
+  </div>
+</PageLayout>

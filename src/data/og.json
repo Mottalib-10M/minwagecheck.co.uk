@@ -1,0 +1,13 @@
+{
+ "accent": "#0B5C4B",
+ "symbol": "MW",
+ "variants": [
+  {
+   "file": "og-en.png",
+   "title": "Minimum wage checker\nam I paid enough?",
+   "subtitle": "£12.71 now · £13.21 from April 2027 · by age, apprentices, deductions",
+   "badge": "2027 rates announced 28 October 2026, read on GOV.UK",
+   "brand": "UK Minimum Wage"
+  }
+ ]
+}

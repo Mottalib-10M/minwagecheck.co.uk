@@ -1,0 +1,23 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import LegalIdentity from '../../components/LegalIdentity.astro';
+import { CONTACT_EMAIL, LAST_UPDATED, SITE_NAMES } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+import { displayDate } from '../../lib/format';
+const lang = 'en';
+---
+<PageLayout title={`Contact ${SITE_NAMES[lang]}: a rate, a rule, the widget`} description="Write to UK Minimum Wage when a rate or a rule looks out of date, when a result seems wrong, or to embed the minimum wage checker on your own website at no cost." lang={lang} noindex={true} breadcrumbs={[{ label: 'Contact' }]} showAuthor={false}>
+  <div class="prose prose-slate max-w-none">
+    <h1>Contact</h1>
+    <p>Email: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>. A person reads every message.</p>
+    <h2>A rate or a rule looks wrong</h2>
+    <p>Tell us the page and the figure and, if you have it, the link to the regulation, the GOV.UK page or the HMRC guidance that says otherwise. We read the source again, correct the parameter file, add a test for the case and date the change.</p>
+    <h2>What we cannot do</h2>
+    <p>We are not HMRC, the Fair Work Agency, Acas, a union or a law firm. We cannot look at your payslips, contact your employer or take a complaint. Please do not send payslips, contracts, National Insurance numbers or other personal details. Complaints about pay go to the official service described on the <a href={route('report-underpayment', lang)}>underpayment page</a>.</p>
+    <h2>Using a checker on your own site</h2>
+    <p>Advice centres, student unions, youth services and employers can show the checker in an iframe at no cost: see the <a href={route('widget', lang)}>embed page</a>.</p>
+    <h2>Publisher</h2>
+    <LegalIdentity lang={lang} />
+    <p>Updated on <time datetime={LAST_UPDATED}>{displayDate(LAST_UPDATED, 'en-GB')}</time>.</p>
+  </div>
+</PageLayout>

@@ -1,0 +1,42 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import { LAST_UPDATED } from '../../data/site-config';
+import { route } from '../../i18n/routes';
+import { breadcrumbSchema, articleSchema } from '../../lib/seo';
+import { helpers } from '../../lib/helpers';
+import { displayDate } from '../../lib/format';
+const lang = 'en';
+const h = helpers(lang);
+const s = (k: Parameters<typeof h.src>[0], t: string) => h.src(k, t);
+---
+<PageLayout title="Method of UK Minimum Wage: rates, pay periods and offsets" description="How UK Minimum Wage picks the rate for an age and a date, counts pay and hours in a pay period, applies the accommodation offset and works out arrears." lang={lang} jsonLd={[articleSchema({ title: 'How the minimum wage checks are worked out', description: 'Method of UK Minimum Wage', path: route('method', lang), lang }), breadcrumbSchema([{ name: 'Home', path: route('home', lang) }, { name: 'Method', path: route('method', lang) }])]} breadcrumbs={[{ label: 'Method' }]}>
+  <header class="mb-6"><p class="kicker">Method</p><h1 class="mt-0 text-3xl font-bold text-navy-900 md:text-4xl">How the minimum wage checks are worked out</h1></header>
+  <div class="prose prose-slate max-w-none">
+    <p>Every page and every checker reads one parameter file, built from the regulations, GOV.UK and the Low Pay Commission and read on {h.date(h.P.retrieved_at)}, each value with its source. No rate is typed into a page: when a rate changes, the file changes and every page follows. Automated tests check the engine against the worked examples HMRC and GOV.UK publish.</p>
+    <h2>1. The rate for a date and an age</h2>
+    <p>The file holds every rate period since 1 April 2019 with its age bands: the National Living Wage from 25 until March 2021, from 23 until March 2024 and from 21 since April 2024, then the bands below it. The checker takes the period in force on the first day of your pay period and the band for your age on that day. Apprentices get the apprentice rate when they are under 19, or 19 and over in the first year of the apprenticeship; otherwise the rate for their age (<Fragment set:html={s('gov_rates', 'GOV.UK rates')} />). Under compulsory school age there is no entitlement. The rates from 1 April 2027 are those the government announced on {h.date(h.A.date)}, accepting the <Fragment set:html={s('lpc_2027', 'Low Pay Commission recommendations')} />; they are labelled as announced until the amending regulations are made.</p>
+    <h2>2. Pay that counts in a pay period</h2>
+    <p>Following HMRC's guidance on <Fragment set:html={s('hmrc_calc', 'calculating the minimum wage')} />, the checker starts from your gross pay for the pay reference period, then:</p>
+    <ul>
+      <li>leaves out overtime and shift premiums (the part above the basic rate), tips, gratuities and service charges, and the other sums you enter as not counting;</li>
+      <li>takes off what you paid or had deducted for the employer's purposes, such as a required uniform, tools or training, and salary given up under a salary sacrifice;</li>
+      <li>adds the accommodation offset for each day of free accommodation, or takes off what a charge for accommodation exceeds the offset (<Fragment set:html={s('gov_accom', 'GOV.UK accommodation rules')} />); a charge at or under the offset has no effect.</li>
+    </ul>
+    <p>The result is divided by the hours of working time you enter and compared with the rate. The shortfall is the rate × hours, less the pay that counts, for that period.</p>
+    <h2>3. Hours</h2>
+    <p>The hours are those you enter. The pages on <a href={route('training-travel-waiting-time', lang)}>training, travel and waiting</a> and <a href={route('sleep-in-and-on-call', lang)}>sleep-ins and on-call time</a> explain which time counts, from HMRC's guidance on <Fragment set:html={s('hmrc_hours', 'working hours for which the minimum wage must be paid')} />. Salaried hours use the basic annual hours; output work uses the fair piece rate of regulation 43: the rate divided by the mean hourly output divided by {h.RULES.pieceUplift}.</p>
+    <h2>4. Conversions, tax and employer cost</h2>
+    <p>Weekly pay is the rate × weekly hours; yearly pay is the weekly pay × 52; monthly pay is the yearly pay ÷ 12. Take-home pay is an estimate with the standard tax code, no pension or student loan, using HMRC's <Fragment set:html={s('rates_thresholds', 'rates and thresholds for 2026 to 2027')} /> and, for 2027 to 2028, the frozen thresholds of <Fragment set:html={s('budget_annex', 'Budget 2026 Annex A')} />; the Scottish bands for 2027 to 2028 are not yet published and the 2026 to 2027 bands are used, as the result says. Employer National Insurance is 15% above £5,000 a year, with the 0% rate up to £50,270 for workers under 21 and apprentices under 25.</p>
+    <h2>5. Arrears and penalties</h2>
+    <p>Arrears follow HMRC's formula: the underpayment divided by the rate at the time, multiplied by the current rate of the same band, never less than the underpayment. The penalty on a notice of underpayment is {h.pc(h.E.penaltyPct)} of the arrears, at most {h.gbp(h.E.penaltyMaxPerWorker)} per worker, halved if paid within {h.E.earlyPaymentDays} days (<Fragment set:html={s('hmrc_enforce', 'HMRC, enforcing the minimum wage')} />).</p>
+    <h2>6. Dates</h2>
+    <p>A new age band starts with the first pay reference period that begins on or after the birthday. The school leaving date follows the rules of each nation on <Fragment set:html={s('leave_school', 'GOV.UK')} />; in Scotland, for winter birthdays, the rule names the start of the Christmas holidays rather than a day, and the checker says so.</p>
+    <h2>7. What the site does not do</h2>
+    <ul>
+      <li>It does not decide whether you were underpaid: HMRC, a tribunal or a court does.</li>
+      <li>It does not contact employers, take complaints or recommend a lawyer or a union.</li>
+      <li>It does not keep anything you type: the checkers run in your browser.</li>
+    </ul>
+    <p>Method version of <time datetime={LAST_UPDATED}>{displayDate(LAST_UPDATED, 'en-GB')}</time>. A figure that looks wrong: <a href={route('contact', lang)}>contact</a>.</p>
+  </div>
+</PageLayout>

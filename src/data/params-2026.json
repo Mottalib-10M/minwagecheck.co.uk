@@ -1,0 +1,609 @@
+{
+  "_lisezmoi": "Every legal figure of the site lives here, never in a page (RECETTE-SITE.md §4). Each value was read on the official source named in `sources` on the date of `retrieved_at`. April 2027 rates: announced by the government on 28 October 2026 (LPC recommendations accepted in full); the amending regulations had not been made on the day of reading.",
+  "year": 2026,
+  "retrieved_at": "2026-10-29",
+  "valid_from": "2026-04-01",
+  "valid_to": "2027-03-31",
+  "periods": [
+    {
+      "from": "2019-04-01",
+      "to": "2020-03-31",
+      "label": "April 2019 to March 2020",
+      "nlwAge": 25,
+      "bands": [
+        {
+          "min": 25,
+          "rate": 8.21
+        },
+        {
+          "min": 21,
+          "rate": 7.7
+        },
+        {
+          "min": 18,
+          "rate": 6.15
+        },
+        {
+          "min": 16,
+          "rate": 4.35
+        }
+      ],
+      "apprentice": 3.9,
+      "offsetDay": 7.55,
+      "law": "si_2019"
+    },
+    {
+      "from": "2020-04-01",
+      "to": "2021-03-31",
+      "label": "April 2020 to March 2021",
+      "nlwAge": 25,
+      "bands": [
+        {
+          "min": 25,
+          "rate": 8.72
+        },
+        {
+          "min": 21,
+          "rate": 8.2
+        },
+        {
+          "min": 18,
+          "rate": 6.45
+        },
+        {
+          "min": 16,
+          "rate": 4.55
+        }
+      ],
+      "apprentice": 4.15,
+      "offsetDay": 8.2,
+      "law": "gov_rates"
+    },
+    {
+      "from": "2021-04-01",
+      "to": "2022-03-31",
+      "label": "April 2021 to March 2022",
+      "nlwAge": 23,
+      "bands": [
+        {
+          "min": 23,
+          "rate": 8.91
+        },
+        {
+          "min": 21,
+          "rate": 8.36
+        },
+        {
+          "min": 18,
+          "rate": 6.56
+        },
+        {
+          "min": 16,
+          "rate": 4.62
+        }
+      ],
+      "apprentice": 4.3,
+      "offsetDay": 8.36,
+      "law": "gov_rates"
+    },
+    {
+      "from": "2022-04-01",
+      "to": "2023-03-31",
+      "label": "April 2022 to March 2023",
+      "nlwAge": 23,
+      "bands": [
+        {
+          "min": 23,
+          "rate": 9.5
+        },
+        {
+          "min": 21,
+          "rate": 9.18
+        },
+        {
+          "min": 18,
+          "rate": 6.83
+        },
+        {
+          "min": 16,
+          "rate": 4.81
+        }
+      ],
+      "apprentice": 4.81,
+      "offsetDay": 8.7,
+      "law": "gov_rates"
+    },
+    {
+      "from": "2023-04-01",
+      "to": "2024-03-31",
+      "label": "April 2023 to March 2024",
+      "nlwAge": 23,
+      "bands": [
+        {
+          "min": 23,
+          "rate": 10.42
+        },
+        {
+          "min": 21,
+          "rate": 10.18
+        },
+        {
+          "min": 18,
+          "rate": 7.49
+        },
+        {
+          "min": 16,
+          "rate": 5.28
+        }
+      ],
+      "apprentice": 5.28,
+      "offsetDay": 9.1,
+      "law": "gov_rates"
+    },
+    {
+      "from": "2024-04-01",
+      "to": "2025-03-31",
+      "label": "April 2024 to March 2025",
+      "nlwAge": 21,
+      "bands": [
+        {
+          "min": 21,
+          "rate": 11.44
+        },
+        {
+          "min": 18,
+          "rate": 8.6
+        },
+        {
+          "min": 16,
+          "rate": 6.4
+        }
+      ],
+      "apprentice": 6.4,
+      "offsetDay": 9.99,
+      "law": "gov_rates"
+    },
+    {
+      "from": "2025-04-01",
+      "to": "2026-03-31",
+      "label": "April 2025 to March 2026",
+      "nlwAge": 21,
+      "bands": [
+        {
+          "min": 21,
+          "rate": 12.21
+        },
+        {
+          "min": 18,
+          "rate": 10.0
+        },
+        {
+          "min": 16,
+          "rate": 7.55
+        }
+      ],
+      "apprentice": 7.55,
+      "offsetDay": 10.66,
+      "law": "gov_rates"
+    },
+    {
+      "from": "2026-04-01",
+      "to": "2027-03-31",
+      "label": "April 2026 to March 2027",
+      "nlwAge": 21,
+      "bands": [
+        {
+          "min": 21,
+          "rate": 12.71
+        },
+        {
+          "min": 18,
+          "rate": 10.85
+        },
+        {
+          "min": 16,
+          "rate": 8.0
+        }
+      ],
+      "apprentice": 8.0,
+      "offsetDay": 11.1,
+      "law": "si_2026"
+    },
+    {
+      "from": "2027-04-01",
+      "to": "2028-03-31",
+      "label": "From April 2027",
+      "nlwAge": 21,
+      "bands": [
+        {
+          "min": 21,
+          "rate": 13.21
+        },
+        {
+          "min": 18,
+          "rate": 11.27
+        },
+        {
+          "min": 16,
+          "rate": 8.31
+        }
+      ],
+      "apprentice": 8.31,
+      "offsetDay": 11.53,
+      "law": "lpc_2027",
+      "announced": "2026-10-28",
+      "status": "announced"
+    }
+  ],
+  "announcement2027": {
+    "date": "2026-10-28",
+    "lpcLetter": "2026-10-23",
+    "increasePct": 0.039,
+    "referenceRate": 13.44,
+    "referencePct": 0.057,
+    "springEstimate": 13.18,
+    "springLow": 13.02,
+    "springHigh": 13.34,
+    "regulationsMade": false
+  },
+  "remit": {
+    "published": "2026-03-16",
+    "target": "two thirds of median hourly earnings",
+    "ageAim": 18,
+    "criteriaPaper": "2026-07-10",
+    "lpcReport2026": "2026-04-01"
+  },
+  "rules": {
+    "prpMaxMonths": 1,
+    "pieceUplift": 1.2,
+    "apprenticeUnder": 19,
+    "apprenticeFirstYearMonths": 12,
+    "schoolAge": 16,
+    "trialWeeksJobcentre": 6,
+    "placementMaxYears": 1
+  },
+  "enforcement": {
+    "penaltyPct": 2,
+    "penaltyMaxPerWorker": 20000,
+    "earlyPaymentDays": 14,
+    "earlyPaymentReduction": 0.5,
+    "appealDays": 28,
+    "civilYears": 6,
+    "acasPhone": "0300 123 1100",
+    "acasHours": "Monday to Friday, 8am to 6pm",
+    "recordsYears": 6,
+    "recordsAwardHours": 80,
+    "tribunalMonths": 6,
+    "tribunalMonthsBefore": 3,
+    "tribunalChange": "2026-10-01",
+    "acasCertificateMonths": 1
+  },
+  "young": {
+    "under18MaxDay": 8,
+    "under18MaxWeek": 40,
+    "under18BreakAfterHours": 4.5,
+    "under18BreakMinutes": 30,
+    "adultBreakAfterHours": 6,
+    "adultBreakMinutes": 20,
+    "termMaxWeek": 12,
+    "holidayMaxWeek15": 35,
+    "holidayMaxWeek14": 25
+  },
+  "tax": {
+    "2026": {
+      "label": "2026 to 2027",
+      "personalAllowance": 12570,
+      "taperFrom": 100000,
+      "ruk": [
+        {
+          "upTo": 37700,
+          "rate": 0.2
+        },
+        {
+          "upTo": 125140,
+          "rate": 0.4
+        },
+        {
+          "upTo": null,
+          "rate": 0.45
+        }
+      ],
+      "scotland": [
+        {
+          "upTo": 3967,
+          "rate": 0.19
+        },
+        {
+          "upTo": 16956,
+          "rate": 0.2
+        },
+        {
+          "upTo": 31092,
+          "rate": 0.21
+        },
+        {
+          "upTo": 62430,
+          "rate": 0.42
+        },
+        {
+          "upTo": 125140,
+          "rate": 0.45
+        },
+        {
+          "upTo": null,
+          "rate": 0.48
+        }
+      ],
+      "niPrimary": 12570,
+      "niUpper": 50270,
+      "niMain": 0.08,
+      "niAbove": 0.02,
+      "niSecondary": 5000,
+      "niEmployer": 0.15,
+      "niUnder21Upper": 50270,
+      "lel": 6708,
+      "weekly": {
+        "pt": 242,
+        "st": 96,
+        "lel": 129
+      }
+    },
+    "2027": {
+      "label": "2027 to 2028",
+      "personalAllowance": 12570,
+      "taperFrom": 100000,
+      "ruk": [
+        {
+          "upTo": 37700,
+          "rate": 0.2
+        },
+        {
+          "upTo": 125140,
+          "rate": 0.4
+        },
+        {
+          "upTo": null,
+          "rate": 0.45
+        }
+      ],
+      "scotland": null,
+      "niPrimary": 12570,
+      "niUpper": 50270,
+      "niMain": 0.08,
+      "niAbove": 0.02,
+      "niSecondary": 5000,
+      "niEmployer": 0.15,
+      "niUnder21Upper": 50270
+    }
+  },
+  "pension": {
+    "employerMinPct": 0.03,
+    "employeeMinPct": 0.05,
+    "trigger": 10000,
+    "ageFrom": 22
+  },
+  "rlw": {
+    "2026": {
+      "uk": 14.1,
+      "london": 15.45,
+      "announced": "2026-10-15",
+      "implementBy": "2027-05-01"
+    },
+    "2025": {
+      "uk": 13.45,
+      "london": 14.8
+    }
+  },
+  "schoolLeaving": {
+    "england": "last Friday in June of the school year in which the child turns 16 (16 by the end of the summer holidays)",
+    "wales": "last Friday in June, if 16 by the end of that school year's summer holidays",
+    "scotland": "31 May if 16 between 1 March and 30 September; start of the Christmas holidays if 16 between 1 October and the end of February",
+    "ni": "30 June if 16 between 1 September and 1 July; 30 June of the following year if 16 between 2 July and 31 August"
+  },
+  "sources": {
+    "gov_rates": {
+      "url": "https://www.gov.uk/national-minimum-wage-rates",
+      "label": {
+        "en": "GOV.UK, National Minimum Wage and National Living Wage rates (April 2019 to April 2027)"
+      }
+    },
+    "si_2026": {
+      "url": "https://www.legislation.gov.uk/uksi/2026/357/made",
+      "label": {
+        "en": "The National Minimum Wage (Amendment) Regulations 2026, SI 2026/357 (in force 1 April 2026)"
+      }
+    },
+    "si_2019": {
+      "url": "https://www.gov.uk/national-minimum-wage-rates",
+      "label": {
+        "en": "GOV.UK, previous rates from April 2019"
+      }
+    },
+    "nmw_regs": {
+      "url": "https://www.legislation.gov.uk/uksi/2015/621/contents",
+      "label": {
+        "en": "The National Minimum Wage Regulations 2015, SI 2015/621 (legislation.gov.uk)"
+      }
+    },
+    "nmw_act": {
+      "url": "https://www.legislation.gov.uk/ukpga/1998/39/contents",
+      "label": {
+        "en": "National Minimum Wage Act 1998 (legislation.gov.uk)"
+      }
+    },
+    "lpc_2027_news": {
+      "url": "https://www.gov.uk/government/news/lpc-recommendations-take-the-national-living-wage-to-1321",
+      "label": {
+        "en": "GOV.UK news, 28 October 2026: LPC recommendations take the National Living Wage to £13.21"
+      }
+    },
+    "lpc_2027": {
+      "url": "https://www.gov.uk/government/publications/minimum-wage-rates-for-2027",
+      "label": {
+        "en": "Low Pay Commission, Minimum wage rates for 2027: letter to the government and report"
+      }
+    },
+    "lpc_remit": {
+      "url": "https://www.gov.uk/government/publications/national-minimum-wage-and-national-living-wage-low-pay-commission-remit-2026",
+      "label": {
+        "en": "Low Pay Commission remit 2026 (published 16 March 2026)"
+      }
+    },
+    "lpc_report": {
+      "url": "https://www.gov.uk/government/publications/the-national-minimum-wage-in-2026",
+      "label": {
+        "en": "Low Pay Commission, The National Minimum Wage in 2026 (1 April 2026)"
+      }
+    },
+    "lpc": {
+      "url": "https://www.gov.uk/government/organisations/low-pay-commission",
+      "label": {
+        "en": "Low Pay Commission on GOV.UK"
+      }
+    },
+    "hmrc_calc": {
+      "url": "https://www.gov.uk/guidance/calculating-the-minimum-wage/calculating-the-minimum-wage",
+      "label": {
+        "en": "HMRC guidance, Calculating the minimum wage: pay, deductions and pay reference periods"
+      }
+    },
+    "hmrc_hours": {
+      "url": "https://www.gov.uk/guidance/calculating-the-minimum-wage/working-hours-for-which-the-minimum-wage-must-be-paid",
+      "label": {
+        "en": "HMRC guidance, Working hours for which the minimum wage must be paid"
+      }
+    },
+    "hmrc_elig": {
+      "url": "https://www.gov.uk/guidance/calculating-the-minimum-wage/eligibility-for-the-minimum-wage",
+      "label": {
+        "en": "HMRC guidance, Eligibility for the minimum wage"
+      }
+    },
+    "hmrc_enforce": {
+      "url": "https://www.gov.uk/guidance/calculating-the-minimum-wage/enforcing-the-minimum-wage",
+      "label": {
+        "en": "HMRC guidance, Enforcing the minimum wage"
+      }
+    },
+    "gov_who": {
+      "url": "https://www.gov.uk/national-minimum-wage/who-gets-the-minimum-wage",
+      "label": {
+        "en": "GOV.UK, Who gets the minimum wage"
+      }
+    },
+    "gov_employers": {
+      "url": "https://www.gov.uk/national-minimum-wage/employers-and-the-minimum-wage",
+      "label": {
+        "en": "GOV.UK, Employers and the minimum wage"
+      }
+    },
+    "gov_disputes": {
+      "url": "https://www.gov.uk/national-minimum-wage/worker-disputes-over-minimum-wage",
+      "label": {
+        "en": "GOV.UK, Problems getting the minimum wage"
+      }
+    },
+    "gov_accom": {
+      "url": "https://www.gov.uk/national-minimum-wage-accommodation/effect-on-the-minimum-wage",
+      "label": {
+        "en": "GOV.UK, Accommodation: effect on the minimum wage"
+      }
+    },
+    "gov_apprentice": {
+      "url": "https://www.gov.uk/become-apprentice/pay-and-conditions-for-apprentices",
+      "label": {
+        "en": "GOV.UK, Pay and conditions for apprentices"
+      }
+    },
+    "gov_complaint": {
+      "url": "https://www.gov.uk/government/publications/pay-and-work-rights-complaints",
+      "label": {
+        "en": "GOV.UK, Pay and work rights complaints (form)"
+      }
+    },
+    "fwa": {
+      "url": "https://www.gov.uk/guidance/contact-the-fair-work-agency",
+      "label": {
+        "en": "GOV.UK, Contact the Fair Work Agency"
+      }
+    },
+    "gov_checker": {
+      "url": "https://www.gov.uk/am-i-getting-minimum-wage",
+      "label": {
+        "en": "GOV.UK, Check if you're getting the minimum wage"
+      }
+    },
+    "acas": {
+      "url": "https://www.acas.org.uk/national-minimum-wage-entitlement",
+      "label": {
+        "en": "Acas, National Minimum Wage entitlement"
+      }
+    },
+    "acas_contact": {
+      "url": "https://www.acas.org.uk/contact",
+      "label": {
+        "en": "Acas, Contact the helpline"
+      }
+    },
+    "tribunals": {
+      "url": "https://www.gov.uk/employment-tribunals",
+      "label": {
+        "en": "GOV.UK, Make a claim to an employment tribunal"
+      }
+    },
+    "rates_thresholds": {
+      "url": "https://www.gov.uk/guidance/rates-and-thresholds-for-employers-2026-to-2027",
+      "label": {
+        "en": "HMRC, Rates and thresholds for employers 2026 to 2027"
+      }
+    },
+    "budget_annex": {
+      "url": "https://www.gov.uk/government/publications/budget-2026-overview-of-tax-legislation-and-rates-ootlar/annex-a-rates-and-allowances",
+      "label": {
+        "en": "HM Treasury, Budget 2026, Annex A: rates and allowances"
+      }
+    },
+    "rlw": {
+      "url": "https://www.livingwage.org.uk/what-real-living-wage",
+      "label": {
+        "en": "Living Wage Foundation, What is the real Living Wage"
+      }
+    },
+    "leave_school": {
+      "url": "https://www.gov.uk/know-when-you-can-leave-school",
+      "label": {
+        "en": "GOV.UK, School leaving age"
+      }
+    },
+    "child_emp": {
+      "url": "https://www.gov.uk/child-employment",
+      "label": {
+        "en": "GOV.UK, Child employment"
+      }
+    },
+    "working_hours": {
+      "url": "https://www.gov.uk/maximum-weekly-working-hours",
+      "label": {
+        "en": "GOV.UK, Maximum weekly working hours"
+      }
+    },
+    "rest_breaks": {
+      "url": "https://www.gov.uk/rest-breaks-work",
+      "label": {
+        "en": "GOV.UK, Rest breaks at work"
+      }
+    },
+    "worker_status": {
+      "url": "https://www.gov.uk/employment-status/worker",
+      "label": {
+        "en": "GOV.UK, Employment status: worker"
+      }
+    },
+    "pensions": {
+      "url": "https://www.gov.uk/workplace-pensions/what-you-your-employer-and-the-government-pay",
+      "label": {
+        "en": "GOV.UK, Workplace pensions: what you, your employer and the government pay"
+      }
+    }
+  }
+}
