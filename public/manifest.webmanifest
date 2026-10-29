@@ -1,6 +1,6 @@
 {
- "name": "UK Minimum Wage",
- "short_name": "UK Minimum Wage",
+ "name": "MinWage Check",
+ "short_name": "MinWage Check",
  "description": "Check your pay against the UK minimum wage: rate for your age on any date, apprentice rules, deductions and accommodation, and what the April 2027 rise means for you.",
  "start_url": "/en/",
  "display": "standalone",

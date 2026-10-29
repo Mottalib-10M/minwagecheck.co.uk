@@ -3,4 +3,4 @@ Allow: /
 
 Disallow: /*?*
 
-Sitemap: https://uk-minimum-wage.example/sitemap-index.xml
+Sitemap: https://minwagecheck.co.uk/sitemap-index.xml

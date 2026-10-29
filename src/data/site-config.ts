@@ -1,6 +1,6 @@
 /** Configuration centrale du site (générée par new-site.py). */
-export const SITE_URL = "https://uk-minimum-wage.example";
-export const SITE_NAMES: Record<string, string> = {"en": "UK Minimum Wage"};
+export const SITE_URL = "https://minwagecheck.co.uk";
+export const SITE_NAMES: Record<string, string> = {"en": "MinWage Check"};
 // Partie du nom affichée en couleur dans l'en-tête (RECETTE §10.3), « » pour aucune.
 export const BRAND_ACCENT = "";
 export const LANG_TAGS: Record<string, string> = {"en": "en-GB"};
@@ -18,7 +18,7 @@ export const AUTHOR_DESC: Record<string, string> = {"en": "Radif Partners reads 
  *  themes reellement traites par le site, pas une liste de mots-cles : un sujet
  *  declare ici sans page qui le couvre est une declaration fausse. */
 export const KNOWS_ABOUT: Record<string, string[]> = {"en": ["National Minimum Wage and National Living Wage rates", "National Minimum Wage Regulations 2015", "Apprentice rate of the minimum wage", "Accommodation offset", "Deductions that reduce minimum wage pay", "Minimum wage arrears and enforcement"]};
-export const CONTACT_EMAIL = "contact@uk-minimum-wage.example";
+export const CONTACT_EMAIL = "contact@minwagecheck.co.uk";
 export const THEME_COLOR = '#0B5C4B';
 export const LOGO_SYMBOL = 'MW';
 export const BING_VERIFY_CODE = '';
